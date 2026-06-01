@@ -18,7 +18,7 @@ spec:
         valueFiles:
           - $our-repo/apps-config/traefik-values.yaml
 
-    - repoURL: "https://github.com/KevDi/local_app_of_apps"
+    - repoURL: "https://github.com/KevDi/local_app_of_apps.git"
       targetRevision: HEAD
       ref: our-repo
   destination:
