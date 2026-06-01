@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-stack
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: "https://prometheus-community.github.io/helm-charts"
+      chart: kube-prometheus-stack
+      targetRevision: 86.0.2
+      helm:
+        releaseName: prometheus-stack
+        valueFiles:
+          - $our-repo/apps-config/prometheus-values.yaml
+
+    - repoURL: "https://github.com/KevDi/local_app_of_apps"
+      targetRevision: HEAD
+      ref: our-repo
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    createNamespace: true

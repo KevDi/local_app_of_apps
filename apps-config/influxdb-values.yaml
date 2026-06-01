@@ -1,0 +1,20 @@
+persistence:
+  enabled: true
+  size: 2Gi
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
+ingress:
+  enabled: true
+  className: traefik
+  hostname: influx.localhost
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  tls: true
+  secretName: custom-default-tls

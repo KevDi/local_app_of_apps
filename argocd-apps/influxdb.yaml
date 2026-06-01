@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: influxdb
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: "https://helm.influxdata.com/"
+      chart: influxdb2
+      targetRevision: 2.1.2
+      helm:
+        releaseName: influxdb
+        valueFiles:
+          - $our-repo/apps-config/influxdb-values.yaml
+
+    - repoURL: "https://github.com/KevDi/local_app_of_apps"
+      targetRevision: HEAD
+      ref: our-repo
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: influxdb
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    createNamespace: true

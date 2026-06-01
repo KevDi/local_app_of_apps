@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: "https://argoproj.github.io/argo-helm"
+      chart: argo-cd
+      targetRevision: 9.5.17
+      helm:
+        releaseName: argocd
+        valueFiles:
+          - $our-repo/apps-config/argocd-values.yaml
+
+    - repoURL: "https://github.com/KevDi/local_app_of_apps"
+      targetRevision: HEAD
+      ref: our-repo
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,27 @@
+global:
+  image:
+    tag: ""
+
+configs:
+  params:
+    server.insecure: "true"
+
+server:
+  metrics:
+    enabled: true
+
+  replicaCount: 1
+
+repoServer:
+  replicaCount: 1
+
+applicationSet:
+  enabled: true
+
+notifications:
+  enabled: false
+
+redis-ha:
+  enabled: false
+redis:
+  enabled: true

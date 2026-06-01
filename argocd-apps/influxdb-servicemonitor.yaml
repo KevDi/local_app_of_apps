@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: influxdb-metrics
+  namespace: influxdb
+  labels:
+    release: prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: influxdb2
+  namespaceSelector:
+    matchName:
+      - influxdb
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s

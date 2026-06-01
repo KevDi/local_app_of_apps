@@ -1,0 +1,32 @@
+global:
+  checkNewVersion: false
+
+providers:
+  kubernetesCRD:
+    enabled: true
+  kubernetesIngress:
+    enabled: true
+    ingressClass: traefik
+
+ports:
+  web:
+    redirectTo:
+      port: websecure
+  websecure:
+    tls:
+      enabled: true
+
+ingressRoute:
+  dashboard:
+    enabled: true
+
+metrics:
+  prometheus:
+    entryPoint: metrics
+    addRoutersLabels: true
+    addEntryPointsLabels: true
+
+    serviceMonitor:
+      enabled: true
+      interval: 30s
+      namespace: traefik
