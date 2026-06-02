@@ -41,7 +41,6 @@ grafana:
     tls:
       - hosts:
           - grafana.localhost
-        secretName: custom-default-tls
 
   dashboardProviders:
     dashboardproviders.yaml:

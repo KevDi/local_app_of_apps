@@ -17,4 +17,3 @@ ingress:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
   tls: true
-  secretName: custom-default-tls
