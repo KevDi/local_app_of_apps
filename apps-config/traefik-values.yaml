@@ -10,11 +10,12 @@ providers:
 
 ports:
   web:
-    redirectTo:
-      entryPoint:
-        to: websecure
-        scheme: https
-        permanent: true
+    http:
+      redirectTo:
+        entryPoint:
+          to: websecure
+          scheme: https
+          permanent: true
   websecure:
     expose:
       default: true
