@@ -22,6 +22,14 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: influxdb
+  ignoreDifferences:
+    - group: monitoring.coreos.com
+      kind: ServiceMonitor
+      jsonPointers:
+        - /spec/namespaceSelector
+        - /spec/endpoints/0/relabelings
+        - /spec/endpoints/0/metricRelabelings
+        - /spec/endpoints/0/scheme
   syncPolicy:
     automated:
       prune: true

@@ -54,18 +54,3 @@ grafana:
           editable: true
           options:
             path: /var/lib/grafana/dashboards/default
-
-  dashboards:
-    default:
-      traefik-v3:
-        gnetId: 17346
-        revision: 1
-        datasource: Prometheus
-      argocd:
-        gnetId: 14511
-        revision: 2
-        datasource: Prometheus
-      influxdb2:
-        gnetId: 14418
-        revision: 1
-        datasource: Prometheus
