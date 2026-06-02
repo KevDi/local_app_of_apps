@@ -8,6 +8,11 @@ resources:
   - prometheus-stack.yaml
   - influxdb.yaml
   - influxdb-servicemonitor.yaml
+  - grafana-dashboards.yaml
+  - root-app.yaml
 
-commonLabels:
-  managed-by: gitops-root
+labels:
+  - pairs:
+      managed-by: gitops-root
+    includeSelectors: false
+    includeTemplates: false
