@@ -3,6 +3,9 @@ kind: ConfigMap
 metadata:
   name: cluster-dashboards
   namespace: monitoring
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   labels:
     grafana_dashboard: "1"
 data:
