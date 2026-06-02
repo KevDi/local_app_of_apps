@@ -11,10 +11,13 @@ providers:
 ports:
   web:
     redirectTo:
-      port: websecure
+      entryPoint:
+        to: websecure
+        scheme: https
+        permanent: true
   websecure:
-    tls:
-      enabled: true
+    expose:
+      default: true
 
 ingressRoute:
   dashboard:
